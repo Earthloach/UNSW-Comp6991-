@@ -3,8 +3,17 @@ fn main() {
         .nth(1)
         .expect("missing required command-line argument: <pattern>");
 
-    let pattern = &pattern_string;
-
     // TODO: Replace the following with your code:
-    println!("The command-line argument is: {pattern}");
+    loop {
+        let mut line = String::new();
+        let _ = std::io::stdin().read_line(&mut line); 
+
+        if line.is_empty() {
+            return;
+        }
+
+        if line.contains(&pattern_string) {
+            print!("{line}");
+        }
+    }
 }

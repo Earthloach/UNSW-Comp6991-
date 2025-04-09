@@ -17,17 +17,17 @@ fn main() {
     let shrey_upper_name = to_uppercase(shrey_name);
     let tom_upper_name = to_uppercase(tom_name);
 
-    let shrey = Person {
-        name: shrey_name,
+    let mut shrey = Person {
+        name: shrey_upper_name,
         ticket: Some(entry_pass),
     };
 
-    let tom = Person {
-        name: tom_name,
+    let mut tom = Person {
+        name: tom_upper_name,
         ticket: None,
     };
 
-    move_ticket(shrey, tom);
+    (shrey, tom) = move_ticket(shrey, tom);
 
     // do not change these lines
     println!("{} ticket: {:?}", shrey.name, shrey.ticket);
@@ -45,5 +45,7 @@ fn move_ticket(mut from: Person, mut to: Person) -> (Person, Person) {
     // the ticket should be moved to the "from" person
     // to the 'to' person
     // for now, return the people UNCHANGED
+    to.ticket = from.ticket;
+    from.ticket = None;
     (from, to)
 }
